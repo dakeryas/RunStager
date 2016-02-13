@@ -16,7 +16,7 @@ namespace RunStager{
     while(inputStream>>runNumber){
       
       auto targetPath = dataPattern+runNumber+fileExtension;
-      auto file = TFile::AsyncOpen(targetPath.c_str());
+      auto file = TFile::Open(targetPath.c_str());
       if(file == nullptr) std::cerr<<"Error: "<<targetPath<<" cannot be opened"<<std::endl;
       
     }
