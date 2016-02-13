@@ -8,18 +8,19 @@ namespace bpo = boost::program_options;
 
 namespace RunStager{
 
-  void stage(const boost::filesystem::path& runListPath, const std::string& dataPattern, const std::string& fileExtension){
+  void stageRun(const std::string& targetPath){
+    
+    auto file = TFile::Open(targetPath.c_str());
+    if(file == nullptr) std::cerr<<"Error: "<<targetPath<<" cannot be opened"<<std::endl;
+    
+  }
+  
+  void stageRunList(const boost::filesystem::path& runListPath, const std::string& dataPattern, const std::string& fileExtension){
     
     std::ifstream inputStream(runListPath.string());
     
     std::string runNumber;
-    while(inputStream>>runNumber){
-      
-      auto targetPath = dataPattern+runNumber+fileExtension;
-      auto file = TFile::Open(targetPath.c_str());
-      if(file == nullptr) std::cerr<<"Error: "<<targetPath<<" cannot be opened"<<std::endl;
-      
-    }
+    while(inputStream>>runNumber) stageRun(dataPattern+runNumber+fileExtension);
     
   }
 
@@ -70,7 +71,7 @@ int main(int argc, char* argv[]){
   }
   else{
     
-    RunStager::stage(runListPath, dataPattern, fileExtension);
+    RunStager::stageRunList(runListPath, dataPattern, fileExtension);
     
   }
   
