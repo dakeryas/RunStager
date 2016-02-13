@@ -6,7 +6,7 @@
 
 namespace bpo = boost::program_options;
 
-namespace RunRunStager{
+namespace RunStager{
 
   void stage(const boost::filesystem::path& runListPath, const std::string& dataPattern, const std::string& fileExtension){
     
@@ -30,7 +30,7 @@ int main(int argc, char* argv[]){
   boost::filesystem::path runListPath;
   std::string dataPattern, fileExtension;
   
-  bpo::options_description optionDescription("RunRunStager usage");
+  bpo::options_description optionDescription("RunStager usage");
   optionDescription.add_options()
   ("help,h", "Display this help message")
   ("run-list,r", bpo::value<boost::filesystem::path>(&runListPath)->required(), "Path of the run list to stage")
@@ -70,7 +70,7 @@ int main(int argc, char* argv[]){
   }
   else{
     
-    RunRunStager::stage(runListPath, dataPattern, fileExtension);
+    RunStager::stage(runListPath, dataPattern, fileExtension);
     
   }
   
