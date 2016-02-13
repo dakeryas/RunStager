@@ -38,7 +38,7 @@ int main(int argc, char* argv[]){
   ("file-extension,e", bpo::value<std::string>(&fileExtension)->default_value(".root"), "Extension of the run files");
 
   bpo::positional_options_description positionalOptions;//to use arguments without "--"
-  positionalOptions.add("target", 1);
+  positionalOptions.add("run-list", 1);
   
   bpo::variables_map arguments;
   try{
