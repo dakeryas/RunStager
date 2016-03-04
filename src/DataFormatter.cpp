@@ -6,9 +6,7 @@ namespace RunStager {
     
     std::regex runNumberRegex{runNumberRegexString};
 
-    std::sregex_token_iterator(pattern.begin(), pattern.end(), runNumberRegex, -1);
     tokenziedPattern.assign(std::sregex_token_iterator(pattern.begin(), pattern.end(), runNumberRegex, -1), std::sregex_token_iterator());
-
     if(tokenziedPattern.size() < 2) throw std::runtime_error("'"+runNumberRegexString + "' does not match '" + pattern + "' before its end");
 
   }
